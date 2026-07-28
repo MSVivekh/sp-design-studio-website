@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Twist Biba Cafe | S &amp; P Design Studio LLC</title>
+  <meta name="description" content="Twist Biba Cafe - Interior buildout of a boba tea cafe at 1001 Highway 87, Crystal Beach, TX. Designed by S & P Design Studio LLC.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/svg+xml" href="images/logo.svg">
+  <style>
+    .project-detail-hero {
+      height: 80vh;
+      min-height: 500px;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+    .project-detail-hero img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .project-detail-hero .overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.4) 100%);
+    }
+    .project-detail-hero .content {
+      position: relative;
+      z-index: 2;
+      padding: 80px 50px;
+      max-width: 800px;
+    }
+    .project-detail-hero .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 25px;
+      transition: color 0.3s;
+    }
+    .project-detail-hero .back-link:hover { color: var(--color-white); }
+    .project-detail-hero .back-link svg { width: 16px; height: 16px; }
+    .project-detail-hero .tag {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 15px;
+      font-weight: 500;
+    }
+    .project-detail-hero h1 {
+      font-family: var(--font-heading);
+      font-size: 56px;
+      font-weight: 400;
+      color: var(--color-white);
+      margin-bottom: 10px;
+    }
+    .project-detail-hero .location {
+      font-size: 16px;
+      color: rgba(255,255,255,0.6);
+      font-weight: 300;
+    }
+    .project-meta {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      padding: 60px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .meta-item {}
+    .meta-label {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    .meta-value {
+      font-size: 15px;
+      color: var(--color-gray-light);
+      font-weight: 300;
+      line-height: 1.6;
+    }
+    .project-description {
+      padding: 60px 0;
+    }
+    .project-description p {
+      font-size: 16px;
+      line-height: 1.9;
+      color: var(--color-gray-light);
+      font-weight: 300;
+      max-width: 800px;
+      margin-bottom: 20px;
+    }
+    .project-gallery {
+      padding: 0 0 60px;
+    }
+    .project-gallery h3 {
+      font-family: var(--font-heading);
+      font-size: 28px;
+      font-weight: 400;
+      margin-bottom: 30px;
+      color: var(--color-white);
+    }
+    .gallery-masonry {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+    .gallery-masonry .g-item {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .gallery-masonry .g-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+    .gallery-masonry .g-item:hover img {
+      transform: scale(1.03);
+    }
+    .gallery-masonry .g-item.full-width {
+      grid-column: span 2;
+    }
+    .g-item-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 20px 25px;
+      background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .g-item:hover .g-item-caption { opacity: 1; }
+    .g-item-caption span {
+      font-size: 13px;
+      letter-spacing: 1px;
+      color: rgba(255,255,255,0.9);
+      font-weight: 300;
+    }
+    .project-drawings {
+      padding: 60px 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .project-drawings h3 {
+      font-family: var(--font-heading);
+      font-size: 28px;
+      font-weight: 400;
+      margin-bottom: 30px;
+      color: var(--color-white);
+    }
+    .drawings-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+    .drawing-item {
+      background: var(--color-dark);
+      padding: 20px;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .drawing-item img {
+      width: 100%;
+      height: auto;
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+    .drawing-item:hover img { opacity: 0.9; }
+    .drawing-item .drawing-label {
+      margin-top: 15px;
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--color-gray);
+    }
+    .project-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 40px 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .project-nav a {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--color-gray);
+      transition: color 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .project-nav a:hover { color: var(--color-accent); }
+    .project-nav svg { width: 16px; height: 16px; }
+    @media (max-width: 768px) {
+      .project-detail-hero { height: 60vh; }
+      .project-detail-hero .content { padding: 40px 20px; }
+      .project-detail-hero h1 { font-size: 36px; }
+      .project-meta { grid-template-columns: 1fr 1fr; gap: 25px; }
+      .gallery-masonry { grid-template-columns: 1fr; }
+      .gallery-masonry .g-item.full-width { grid-column: span 1; }
+    }
+  </style>
+</head>
+<body class="page-view">
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo">
+      <img src="images/logo.svg" alt="S&P Design Studio">
+      <div class="nav-logo-text">
+        S &amp; P Design Studio
+        <span>Architecture &amp; Design</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="portfolio.html" class="active">Portfolio</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button class="hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <ul class="mobile-menu-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="mobile-menu-contact">
+      <a href="tel:+18654389512">+1 (865) 438-9512</a><br>
+      <a href="mailto:sushant@spdesignsstudio.com">sushant@spdesignsstudio.com</a>
+    </div>
+  </div>
+
+  <!-- Project Hero -->
+  <section class="project-detail-hero">
+    <img src="TWIST BIBA CAFE/02.jpg" alt="Twist Biba Cafe - 3D Interior View">
+    <div class="overlay"></div>
+    <div class="content">
+      <a href="portfolio.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back to Portfolio
+      </a>
+      <div class="tag">Commercial Interior Buildout</div>
+      <h1>Twist Biba Cafe</h1>
+      <p class="location">1001 Highway 87, Suite, Crystal Beach, TX 77650</p>
+    </div>
+  </section>
+
+  <main>
+    <section class="section section-dark">
+      <div class="container">
+
+        <!-- Project Meta -->
+        <div class="project-meta fade-up">
+          <div class="meta-item">
+            <div class="meta-label">Project Type</div>
+            <div class="meta-value">Interior Buildout<br>Boba Tea Cafe</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Location</div>
+            <div class="meta-value">1001 Highway 87<br>Crystal Beach, TX 77650</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Scope of Work</div>
+            <div class="meta-value">Seating Area, Preparation Counter, Kitchen with Fryer &amp; Prep, Restroom, Storage</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Services</div>
+            <div class="meta-value">Architectural Drawing<br>Interior Design<br>Construction Drawing</div>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div class="project-description fade-up">
+          <div class="section-label">About the Project</div>
+          <h2 class="section-title">Twist Biba Cafe</h2>
+          <div class="separator"></div>
+          <p>
+            Twist Biba Cafe is an interior buildout for a boba tea cafe located along Highway 87 in Crystal Beach, Texas. The compact, efficiently designed space transforms a commercial suite into a vibrant cafe featuring a welcoming seating area, a fully equipped preparation counter, a kitchen, restroom, and storage room.
+          </p>
+          <p>
+            The seating area features warm wood flooring, built-in banquette seating along the walls, and round cafe tables with Costa dining chairs. A 34-inch pony wall with a glass partition separates the dining from the preparation area. The preparation counter is accented with a bold orange panel and includes boba-specific equipment such as sealing machines, boba shakers, powder and fructose dispensers, a coffee machine, and a snow shaver machine.
+          </p>
+          <p>
+            The kitchen is outfitted with prep tables, a dual fryer, a freezer, a vent hood, a working bench, a tea brewer machine, an ice machine, and a display cooler. A dedicated storage room provides space for supplies and chemical storage casework. The restroom is ADA-accessible with proper clearances and fixtures.
+          </p>
+          <p>
+            S &amp; P Design Studio provided architectural drawings, interior design, and construction drawings including floor plans, enlarged plans with interior elevations for every area, and building sections.
+          </p>
+        </div>
+
+        <!-- 3D Renders -->
+        <div class="project-gallery fade-up">
+          <h3>3D Visualizations</h3>
+          <div class="gallery-masonry">
+            <div class="g-item" data-lightbox="TWIST BIBA CAFE/02.jpg">
+              <img src="TWIST BIBA CAFE/02.jpg" alt="3D isometric view - front with Twist Boba Cafe branding and seating" loading="lazy">
+              <div class="g-item-caption"><span>Front View &mdash; Seating &amp; Counter</span></div>
+            </div>
+            <div class="g-item" data-lightbox="TWIST BIBA CAFE/01.jpg">
+              <img src="TWIST BIBA CAFE/01.jpg" alt="3D isometric view - back showing dining, counter, kitchen and restroom" loading="lazy">
+              <div class="g-item-caption"><span>Back View &mdash; Kitchen &amp; Prep Area</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Architectural Drawings -->
+        <div class="project-drawings fade-up">
+          <h3>Architectural Drawings</h3>
+          <div class="drawings-grid">
+            <div class="drawing-item" data-lightbox="TWIST BIBA CAFE/TWIST BIBA CAFE_DRAWINGS Page 002.jpg">
+              <img src="TWIST BIBA CAFE/TWIST BIBA CAFE_DRAWINGS Page 002.jpg" alt="Level 01 Floor Plan - Sheet A1.0" loading="lazy">
+              <div class="drawing-label">A1.0 &mdash; Level 01 Floor Plan &bull; Equipment List &bull; Room Finish Schedule</div>
+            </div>
+            <div class="drawing-item" data-lightbox="TWIST BIBA CAFE/TWIST BIBA CAFE_DRAWINGS Page 003.jpg">
+              <img src="TWIST BIBA CAFE/TWIST BIBA CAFE_DRAWINGS Page 003.jpg" alt="Enlarged Floor Plan - Sheet A1.1" loading="lazy">
+              <div class="drawing-label">A1.1 &mdash; Enlarged Preparation Area &amp; Restroom &bull; Interior Elevations</div>
+            </div>
+            <div class="drawing-item" data-lightbox="TWIST BIBA CAFE/TWIST BIBA CAFE_DRAWINGS Page 004.jpg">
+              <img src="TWIST BIBA CAFE/TWIST BIBA CAFE_DRAWINGS Page 004.jpg" alt="Enlarged Floor Plan - Sheet A1.2" loading="lazy">
+              <div class="drawing-label">A1.2 &mdash; Enlarged Kitchen &amp; Storage &bull; Interior Elevations</div>
+            </div>
+            <div class="drawing-item" data-lightbox="TWIST BIBA CAFE/TWIST BIBA CAFE_DRAWINGS Page 005.jpg">
+              <img src="TWIST BIBA CAFE/TWIST BIBA CAFE_DRAWINGS Page 005.jpg" alt="Building Sections - Sheet A2.0" loading="lazy">
+              <div class="drawing-label">A2.0 &mdash; Building Sections</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="project-nav">
+          <a href="portfolio.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            All Projects
+          </a>
+          <a href="project-shaghf-plano.html">
+            Next: Shaghf Plano
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+      <div class="cta-bg" style="background-image: url('TWIST BIBA CAFE/01.jpg'); background-color: #1a1a1a;"></div>
+      <div class="cta-overlay"></div>
+      <div class="cta-content fade-up">
+        <div class="section-label">Let's Build Together</div>
+        <h2 class="cta-title">Have a Similar Project?</h2>
+        <p class="cta-text">Contact us to discuss your cafe, restaurant, or commercial interior buildout project.</p>
+        <a href="contact.html" class="slide-btn">
+          Get In Touch
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">
+          <img src="images/logo.svg" alt="S&P Design Studio">
+        </div>
+        <p class="footer-about">
+          S &amp; P Design Studio LLC is a full-service architectural and interior design firm creating timeless spaces across Houston, Texas and beyond.
+        </p>
+      </div>
+      <div>
+        <h4 class="footer-title">Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-title">Services</h4>
+        <ul class="footer-links">
+          <li><a href="services.html">Architectural Design</a></li>
+          <li><a href="services.html">Interior Design</a></li>
+          <li><a href="services.html">Planning &amp; Permits</a></li>
+          <li><a href="services.html">Construction Mgmt</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-title">Contact</h4>
+        <ul class="footer-links">
+          <li><a href="tel:+18654389512">+1 (865) 438-9512</a></li>
+          <li><a href="mailto:sushant@spdesignsstudio.com">sushant@spdesignsstudio.com</a></li>
+          <li><a href="contact.html">9628 Cambridge Manor Ln<br>Houston, TX 77045</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2024 S &amp; P Design Studio LLC. All rights reserved.</p>
+      <div class="footer-socials">
+        <a href="#" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="#" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="#" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="lightbox">
+    <button class="lightbox-close">&times;</button>
+    <img src="" alt="Lightbox image">
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
